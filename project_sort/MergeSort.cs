@@ -14,15 +14,16 @@ namespace project_sort
     {
         
         /// <summary>
-        /// 
+        /// Sorts the list
         /// </summary>
-        /// <param name="values"></param>
+        /// <param name="values">The values in the list</param>
         public void Sort(List<T> values)
         {
             if(values.Count <= 1)
             {
                 return;
             }
+
             List<T> values1 = new List<T>();
             List<T> values2 = new List<T>();
 
