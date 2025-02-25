@@ -19,7 +19,13 @@ namespace project_sort
         /// <param name="values"></param>
         public void Sort(List<T> values)
         {
-            
+            if(values.Count <= 1)
+            {
+                return;
+            }
+            List<T> values1 = new List<T>();
+            List<T> values2 = new List<T>();
+
         }
     }
 }
