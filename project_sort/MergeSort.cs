@@ -19,6 +19,7 @@ namespace project_sort
         /// <param name="values">The values in the list</param>
         public void Sort(List<T> values)
         {
+            //base case is not needed no data used is less than or equal to 1
             if(values.Count <= 1)
             {
                 return;
