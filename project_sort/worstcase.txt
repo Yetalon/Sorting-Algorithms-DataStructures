@@ -1,0 +1,6 @@
+- Worst case scenario of sorting
+- No prefetching
+- 3200mhz
+- standard timings
+takes: 6500ms
+32.5 * 10000 * 10000 * 2 / 1e+9
