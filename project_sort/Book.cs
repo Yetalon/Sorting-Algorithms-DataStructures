@@ -5,19 +5,19 @@ namespace project_sort {
         /// <summary>
         /// The authors last name.
         /// </summary>
-        string LastName {get; set;}
+        public string LastName {get; set;}
         /// <summary>
         /// The authors first name.
         /// </summary>
-        string FirstName {get; set;}
+        public string FirstName {get; set;}
         /// <summary>
         /// The tile of the book
         /// </summary>
-        string Title {get; set;}
+        public string Title {get; set;}
         /// <summary>
         /// The release date of the book
         /// </summary>
-        DateTime ReleaseDate {get; set;}
+        public DateTime ReleaseDate {get; set;}
         /// <summary>
         /// Parses a string representing book information into an instace of a <see cref="Book"/>.
         /// </summary>
