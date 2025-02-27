@@ -24,7 +24,7 @@ namespace project_sort
             {
                 return;
             }
-
+            int mid = (values.Count) / 2;
             List<T> values1 = new List<T>();
             List<T> values2 = new List<T>();
 
