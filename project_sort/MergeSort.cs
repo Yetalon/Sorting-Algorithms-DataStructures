@@ -44,10 +44,35 @@ namespace project_sort
             int i = 0;
             while(valuesLeft.Count > 0 && valuesRight.Count > 0)
             {
-                if(Comparer<T>.Default.Compare(valuesLeft, valuesRight))
+                // if valuesLeft < valuesRight returns < 0
+                // if valuesLeft > valuesRight returns > 0
+                // if valuesLeft = valuesRight returns 0
+                if (Comparer<T>.Default.Compare(valuesLeft[0], valuesRight[0]) < 0)
                 {
-
+                    values[i] = valuesRight[0];
+                    valuesRight.RemoveAt(0);
                 }
+                else if(Comparer<T>.Default.Compare(valuesLeft[0], valuesRight[0]) > 0)
+                {
+                    values[i] = valuesLeft[0];
+                    valuesLeft.RemoveAt(0);
+                }
+                else
+                {
+                    values[i] = valuesRight[0];
+                    valuesRight.RemoveAt(0);
+                    valuesLeft.RemoveAt(0);
+                }
+                i++;
+            }
+            //Checks if one of the list still has an item and if so then it gets added
+            if( valuesLeft.Count > 0)
+            {
+                values[i] = values[0];
+            }
+            else if( valuesRight.Count > 0)
+            {
+                values[i] = valuesRight[0];
             }
         }
 
