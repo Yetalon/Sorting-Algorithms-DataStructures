@@ -6,14 +6,24 @@ namespace project_sort
     {
         static void Main(string[] args)
         {
+            List<int> list = [12, 11, 1000, 20, 30, 2, 5];
+            MergeSort<int> merge = new();
+            merge.Sort(list);
+            foreach (var value in list)
+            {
+                Console.WriteLine(value);
+            }
             //InsertionDataInts(args);
             //InsertionDataBooks(args);
         }
 
-        public static void InsertionDataBooks(string[] args) {
+        public static void InsertionDataBooks(string[] args)
+        {
             string fileToWriteTo = "./insertion_data_books.txt";
-            if (args.Length > 0) {
-                foreach (var item in args) {
+            if (args.Length > 0)
+            {
+                foreach (var item in args)
+                {
                     string filename = item;
                     List<Book> books = LoadBookTestData(item);
                     Stopwatch stopwatch = new();
@@ -23,16 +33,20 @@ namespace project_sort
                     stopwatch.Stop();
                     var time = stopwatch.ElapsedMilliseconds;
                     stopwatch.Reset();
-                    using (StreamWriter writer = new(fileToWriteTo, true)) {
+                    using (StreamWriter writer = new(fileToWriteTo, true))
+                    {
                         writer.WriteLine($"{filename},{time}");
                     }
                 }
             }
         }
-        public static void InsertionDataInts(string[] args) {
+        public static void InsertionDataInts(string[] args)
+        {
             string fileToWriteTo = "./insertion_data_ints.txt";
-            if (args.Length > 0) {
-                foreach (var item in args) {
+            if (args.Length > 0)
+            {
+                foreach (var item in args)
+                {
                     string filename = item;
                     List<int> items = LoadIntegerTestData(item);
                     Stopwatch stopwatch = new();
@@ -42,20 +56,25 @@ namespace project_sort
                     stopwatch.Stop();
                     var time = stopwatch.ElapsedMilliseconds;
                     stopwatch.Reset();
-                    using (StreamWriter writer = new(fileToWriteTo, true)) {
+                    using (StreamWriter writer = new(fileToWriteTo, true))
+                    {
                         writer.WriteLine($"{filename},{time}");
                     }
                 }
             }
         }
-        
-        public static List<Book> LoadBookTestData (string filePath) {
+
+        public static List<Book> LoadBookTestData(string filePath)
+        {
             List<Book> books = [];
-            using (StreamReader reader = new(filePath)) {
+            using (StreamReader reader = new(filePath))
+            {
                 string? line;
-                while ((line = reader.ReadLine()) != null) {
+                while ((line = reader.ReadLine()) != null)
+                {
                     Book book = new();
-                    if (book.TryParse(line, out book)) {
+                    if (book.TryParse(line, out book))
+                    {
                         books.Add(book);
                     }
                 }
@@ -63,12 +82,16 @@ namespace project_sort
             return books;
         }
 
-        public static List<int> LoadIntegerTestData(string filePath) {
+        public static List<int> LoadIntegerTestData(string filePath)
+        {
             List<int> ints = [];
-            using (StreamReader reader = new(filePath)) {
+            using (StreamReader reader = new(filePath))
+            {
                 string? line;
-                while ((line = reader.ReadLine()) != null) {
-                    if (int.TryParse(line, out int value)) {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (int.TryParse(line, out int value))
+                    {
                         ints.Add(value);
                     }
                 }
