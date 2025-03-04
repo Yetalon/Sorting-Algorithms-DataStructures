@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Security;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace project_sort
+﻿namespace project_sort
 {
     /// <summary>
     /// 
@@ -40,38 +33,38 @@ namespace project_sort
         /// <param name="valuesRight">The right list</param>
         private void Merge(List<T> values, List<T> valuesLeft, List<T> valuesRight)
         {
-            int i = 0;
-            while (valuesLeft.Count > 0 && valuesRight.Count > 0)
+            int i = 0, leftIndex = 0, rightIndex = 0;
+            int leftSize = valuesLeft.Count, rightSize = valuesRight.Count;
+
+            while (leftIndex < leftSize && rightIndex < rightSize)
             {
-                // if valuesLeft < valuesRight returns < 0
-                // if valuesLeft > valuesRight returns > 0
-                // if valuesLeft = valuesRight returns 0
-                if (Comparer<T>.Default.Compare(valuesLeft[0], valuesRight[0]) < 0)
+                if (Comparer<T>.Default.Compare(valuesLeft[leftIndex], valuesRight[rightIndex]) <= 0)
                 {
-                    values[i] = valuesRight[0];
-                    valuesRight.RemoveAt(0);
-                }
-                else if (Comparer<T>.Default.Compare(valuesLeft[0], valuesRight[0]) > 0)
-                {
-                    values[i] = valuesLeft[0];
-                    valuesLeft.RemoveAt(0);
+                    values[i] = valuesLeft[leftIndex];
+                    leftIndex++;
                 }
                 else
                 {
-                    values[i] = valuesRight[0];
-                    valuesRight.RemoveAt(0);
-                    valuesLeft.RemoveAt(0);
+                    values[i] = valuesRight[rightIndex];
+                    rightIndex++;
                 }
                 i++;
             }
-            //Checks if one of the list still has an item and if so then it gets added
-            if (valuesLeft.Count > 0)
+
+            // Copy remaining elements from left list
+            while (leftIndex < leftSize)
             {
-                values[i] = values[0];
+                values[i] = valuesLeft[leftIndex];
+                leftIndex++;
+                i++;
             }
-            else if (valuesRight.Count > 0)
+
+            // Copy remaining elements from right list
+            while (rightIndex < rightSize)
             {
-                values[i] = valuesRight[0];
+                values[i] = valuesRight[rightIndex];
+                rightIndex++;
+                i++;
             }
         }
 
