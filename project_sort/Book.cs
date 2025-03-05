@@ -1,29 +1,32 @@
 using System.Text.RegularExpressions;
 
-namespace project_sort {
-    public class Book : IComparable<Book> {
+namespace project_sort
+{
+    public class Book : IComparable<Book>
+    {
         /// <summary>
         /// The authors last name.
         /// </summary>
-        public string LastName {get; set;}
+        public string LastName { get; set; }
         /// <summary>
         /// The authors first name.
         /// </summary>
-        public string FirstName {get; set;}
+        public string FirstName { get; set; }
         /// <summary>
         /// The tile of the book
         /// </summary>
-        public string Title {get; set;}
+        public string Title { get; set; }
         /// <summary>
         /// The release date of the book
         /// </summary>
-        public DateTime ReleaseDate {get; set;}
+        public DateTime ReleaseDate { get; set; }
         /// <summary>
         /// Parses a string representing book information into an instace of a <see cref="Book"/>.
         /// </summary>
         /// <param name="line">a string containing information about a book</param>
         /// <returns>A book object</returns>
-        private static Book Parse(string line) {
+        private static Book Parse(string line)
+        {
             string[] parts = line.Split("|");
             Book book = new()
             {
@@ -42,10 +45,12 @@ namespace project_sort {
         /// <param name="line">A string containing information about a book.</param>
         /// <param name="book">An output parameter that will be populated in <see cref="Parse"/> as a book object</param>
         /// <returns>True if the string can be parsed and false otherwise </returns>
-        public bool TryParse(string line, out Book book) {
+        public bool TryParse(string line, out Book book)
+        {
             string pattern = @"\|\s\w*\s*\|\s\w*\s*\|\s[\w*\s\']+\|\s\d{4}-\d{2}-\d{2}\s*\|$";
             Regex regex = new(pattern);
-            if(regex.IsMatch(line)){
+            if (regex.IsMatch(line))
+            {
                 book = Parse(line);
                 return true;
             }
@@ -56,7 +61,8 @@ namespace project_sort {
         /// Converts the book into a formatted string
         /// </summary>
         /// <returns>The book in a formatted string</returns>
-        public override string ToString() {
+        public override string ToString()
+        {
             return $"{LastName},{FirstName},\"{Title}\",{ReleaseDate.ToShortDateString()}";
         }
         /// <summary>
@@ -70,15 +76,16 @@ namespace project_sort {
         /// Zero if the books are even
         /// Postive if the book should come after the other book
         // </returns>
-        public int CompareTo(Book? other) {
+        public int CompareTo(Book? other)
+        {
             int LastNameComparison = LastName.CompareTo(other.LastName);
-            if(LastNameComparison != 0) return LastNameComparison;
+            if (LastNameComparison != 0) return LastNameComparison;
 
             int FirstNameComparison = FirstName.CompareTo(other.FirstName);
-            if(FirstNameComparison != 0) return FirstNameComparison;
+            if (FirstNameComparison != 0) return FirstNameComparison;
 
             int TitleComparison = Title.CompareTo(other.Title);
-            if(TitleComparison != 0) return TitleComparison;
+            if (TitleComparison != 0) return TitleComparison;
 
             return ReleaseDate.CompareTo(other.ReleaseDate);
         }

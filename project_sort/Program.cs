@@ -6,15 +6,58 @@ namespace project_sort
     {
         static void Main(string[] args)
         {
-            List<int> list = [12, 11, 1000, 20, 30, 2, 5];
-            MergeSort<int> merge = new();
-            merge.Sort(list);
-            foreach (var value in list)
-            {
-                Console.WriteLine(value);
-            }
+            //MergeSortDataInts(args);
+            MergeDataBooks(args);
             //InsertionDataInts(args);
             //InsertionDataBooks(args);
+        }
+
+        public static void MergeSortDataInts(string[] args)
+        {
+            string fileToWriteTo = "./mergesortdata_ints.txt";
+            if (args.Length > 0)
+            {
+                foreach (var item in args)
+                {
+                    string filename = item;
+                    List<int> ints = LoadIntegerTestData(item);
+                    Stopwatch stopwatch = new();
+                    MergeSort<int> mergeSort = new();
+                    stopwatch.Start();
+                    mergeSort.Sort(ints);
+                    stopwatch.Stop();
+                    var time = stopwatch.ElapsedMilliseconds;
+                    stopwatch.Reset();
+                    using (StreamWriter writer = new(fileToWriteTo, true))
+                    {
+                        writer.WriteLine($"{filename},{time}");
+                    }
+                }
+            }
+        }
+
+        public static void MergeDataBooks(string[] args)
+        {
+            string fileToWriteTo = "./mergesortdata_books.txt";
+            if (args.Length > 0)
+            {
+                foreach (var item in args)
+                {
+                    string filename = item;
+                    List<Book> books = LoadBookTestData(item);
+                    Stopwatch stopwatch = new();
+                    MergeSort<Book> mergeSort = new();
+                    stopwatch.Start();
+                    mergeSort.Sort(books);
+                    stopwatch.Stop();
+                    var time = stopwatch.ElapsedMilliseconds;
+                    stopwatch.Reset();
+                    using (StreamWriter writer = new(fileToWriteTo, true))
+                    {
+                        writer.WriteLine($"{filename},{time}");
+                    }
+                }
+            }
         }
 
         public static void InsertionDataBooks(string[] args)
